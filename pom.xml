@@ -71,7 +71,8 @@
 
 		</dependencies>
 	</dependencyManagement>
-
+	
+	<!-- This plugin will result in creating executable jar. -->
 	<build>
 		<plugins>
 			<plugin>
