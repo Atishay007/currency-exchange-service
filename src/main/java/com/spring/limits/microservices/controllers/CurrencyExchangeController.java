@@ -1,11 +1,13 @@
 package com.spring.limits.microservices.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.limits.microservices.entity.ExchangeVO;
+import com.spring.limits.microservices.entity.ExchangeDTO;
+import com.spring.limits.microservices.repository.CurrencyExchangeRepository;
 
 @RestController
 public class CurrencyExchangeController {
@@ -13,10 +15,11 @@ public class CurrencyExchangeController {
 	@Value("${server.port}")
 	private int port;
 
+	@Autowired
+	private CurrencyExchangeRepository repo;
+
 	@GetMapping("exchangeService/from/{from}/to/{to}")
-	public ExchangeVO getConversion(@PathVariable String from, @PathVariable String to) {
-		ExchangeVO exchangeVO = new ExchangeVO("inr", "usd", 10, 73l);
-		exchangeVO.setPort(port);
-		return exchangeVO;
+	public ExchangeDTO getConversion(@PathVariable String from, @PathVariable String to) {
+		return repo.findByToAndFrom(to, from);
 	}
 }
