@@ -1,5 +1,7 @@
 package com.spring.limits.microservices.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,7 +22,7 @@ public class ExchangeDTO {
 	private String to;
 
 	@Column(name = "CURRENCY_CONVERSION")
-	private Long conversion;
+	private BigDecimal conversionMultiple;
 
 	@Transient
 	private int port;
@@ -29,12 +31,12 @@ public class ExchangeDTO {
 		super();
 	}
 
-	public ExchangeDTO(Long id, String from, String to, Long conversion) {
+	public ExchangeDTO(Long id, String from, String to, BigDecimal conversionMultiple) {
 		super();
 		this.from = from;
 		this.to = to;
 		this.id = id;
-		this.conversion = conversion;
+		this.conversionMultiple = conversionMultiple;
 	}
 
 	public String getFrom() {
@@ -61,20 +63,20 @@ public class ExchangeDTO {
 		this.id = id;
 	}
 
-	public long getConversion() {
-		return conversion;
-	}
-
-	public void setConversion(Long conversion) {
-		this.conversion = conversion;
-	}
-
 	public int getPort() {
 		return port;
 	}
 
 	public void setPort(int port) {
 		this.port = port;
+	}
+
+	public BigDecimal getConversionMultiple() {
+		return conversionMultiple;
+	}
+
+	public void setConversionMultiple(BigDecimal conversionMultiple) {
+		this.conversionMultiple = conversionMultiple;
 	}
 
 }

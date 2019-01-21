@@ -20,6 +20,8 @@ public class CurrencyExchangeController {
 
 	@GetMapping("exchangeService/from/{from}/to/{to}")
 	public ExchangeDTO getConversion(@PathVariable String from, @PathVariable String to) {
-		return repo.findByToAndFrom(to, from);
+		ExchangeDTO exchangeDTO = repo.findByToAndFrom(to, from);
+		exchangeDTO.setPort(port);
+		return exchangeDTO;
 	}
 }
